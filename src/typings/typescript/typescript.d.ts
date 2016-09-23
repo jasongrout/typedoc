@@ -1318,6 +1318,7 @@ declare module "typescript" {
         UseFullyQualifiedType = 128,
         InFirstTypeArgument = 256,
         InTypeAlias = 512,
+        UseTypeAliasValue = 1024,
     }
     const enum SymbolFormatFlags {
         None = 0,
@@ -2125,20 +2126,13 @@ declare module "typescript" {
 }
 declare module "typescript.performance" {
     function mark(markName: string): void;
-
     function measure(measureName: string, startMarkName?: string, endMarkName?: string): void;
-
     function getCount(markName: string): number;
-
     function getDuration(measureName: string): number;
-
     function forEachMeasure(cb: (measureName: string, duration: number) => void): void;
-
     function enable(): void;
-
     function disable(): void;
 }
-
 declare module "typescript" {
     const enum Ternary {
         False = 0,
@@ -7010,7 +7004,7 @@ declare module "typescript" {
     function makeIdentifierFromModuleName(moduleName: string): string;
     function isBlockOrCatchScoped(declaration: Declaration): boolean;
     function isAmbientModule(node: Node): boolean;
-    function isShorthandAmbientModule(node: Node): boolean;
+    function isShorthandAmbientModuleSymbol(moduleSymbol: Symbol): boolean;
     function isBlockScopedContainerTopLevel(node: Node): boolean;
     function isGlobalScopeAugmentation(module: ModuleDeclaration): boolean;
     function isExternalModuleAugmentation(node: Node): boolean;
